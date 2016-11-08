@@ -21,7 +21,9 @@ namespace beer_me
 	{
 
 		TextView database;
-		JsonValue rawBreweryData; 
+		JsonValue rawBreweryData;
+
+		Button button;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -41,33 +43,46 @@ namespace beer_me
 			var result = createDatabase(pathToDatabase);
 			//Console.WriteLine("Database connected with {0} result", result);
 
+			collectViews();
 
-			// View Definitions
-			Button button = FindViewById<Button>(Resource.Id.button1);
+			attachListeners();
+
+		}
 
 
-			// Event Listeners
+		private void collectViews()
+		{
+			button = FindViewById<Button>(Resource.Id.button1);
+		}
 
+		private void attachListeners()
+		{
 			button.Click += async (sender, e) =>
 			{
-				// get the breweries from the REST endpoint
-				string url = "https://sheetsu.com/apis/v1.0/a05f04d4d9d2";
-				rawBreweryData = await FetchDataAsync(url);
-				database.Text = string.Format("Response: {0}", rawBreweryData);
-				populateBreweriesTable(rawBreweryData);
-			};
+				try
+				{
+					string url = "https://sheetsu.com/apis/v1.0/a05f04d4d9d2";
+					rawBreweryData = await FetchDataAsync(url);
+					database.Text = string.Format("Response: {0}", rawBreweryData);
+					populateBreweriesTable(rawBreweryData);
+				}
+				catch (Exception)
+				{
+					Console.WriteLine(e);
+				}
 
+			};
 		}
 
 
 		private void populateBreweriesTable(JsonValue breweryData)
 		{
-
-			dynamic dynJson = JsonConvert.DeserializeObject(breweryData);
-			foreach (var item in dynJson)
+			if (breweryData != null)
 			{
-				Console.WriteLine("{0} {1} {2} {3}\n", item.id, item.name,
-					item.phone, item.address);
+				foreach (var b in breweryData)
+				{
+					Console.WriteLine(b.ToString());
+				}
 			}
 
 		}
