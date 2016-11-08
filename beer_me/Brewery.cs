@@ -12,11 +12,13 @@ namespace beer_me
 
 		private string Address { get; set; }
 
+		private string City { get; set; }
+
 		private string Phone { get; set; }
 
-		private int latitude { get; set; } 
+		private int Lat { get; set; } 
 
-		private int longitude { get; set; }
+		private int Long { get; set; }
 
 		public override string ToString()
 		{
