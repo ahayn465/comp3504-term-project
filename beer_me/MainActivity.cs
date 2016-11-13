@@ -20,7 +20,6 @@ namespace beer_me
 	public class MainActivity : Activity
 	{
 
-		TextView database;
 		JsonValue rawBreweryData;
 
 		List<Brewery> breweries = new List<Brewery>();
@@ -31,13 +30,11 @@ namespace beer_me
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
-
-			var docsFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
-			var pathToDatabase = System.IO.Path.Combine(docsFolder, "db_sqlnet.db");
-
 			SetContentView(Resource.Layout.Main);
 
 			// Sqlite not being used yet
+			//var docsFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
+			//var pathToDatabase = System.IO.Path.Combine(docsFolder, "db_sqlnet.db");
 			//var result = createDatabase(pathToDatabase);
 			//Console.WriteLine("Database connected with {0} result", result);
 
@@ -67,7 +64,6 @@ namespace beer_me
 			{
 				string url = "https://sheetsu.com/apis/v1.0/a05f04d4d9d2";
 				rawBreweryData = await FetchDataAsync(url);
-				database.Text = string.Format("Brewery data retrieved");
 				generateBreweryList(rawBreweryData);
 			}
 			catch (Exception e)
@@ -130,7 +126,7 @@ namespace beer_me
 				var connection = new SQLiteAsyncConnection(path);
 				connection.CreateTableAsync<TableBrewery>().ContinueWith(t =>
 				{
-					database.Text = string.Format("Database connected, {0}", t);
+					//do something
 				});
 
 				return "Database created";
