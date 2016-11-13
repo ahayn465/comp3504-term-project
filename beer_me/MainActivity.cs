@@ -38,25 +38,11 @@ namespace beer_me
 			//var result = createDatabase(pathToDatabase);
 			//Console.WriteLine("Database connected with {0} result", result);
 
-			collectViews();
-
-			attachListeners();
+			breweryListView = FindViewById<ListView>(Resource.Id.breweryListView);
 
 			GetBreweryDataAsync();
 
 		}
-
-
-		private void collectViews()
-		{
-			breweryListView = FindViewById<ListView>(Resource.Id.breweryListView);
-		}
-
-		private void attachListeners()
-		{
-			
-		}
-
 
 		async Task<String> GetBreweryDataAsync()
 		{
