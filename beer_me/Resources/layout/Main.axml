@@ -5,15 +5,10 @@
     android:layout_height="match_parent"
     android:minWidth="25px"
     android:minHeight="25px">
-    <TextView
-        android:text="..."
-        android:textAppearance="?android:attr/textAppearanceMedium"
+    <ListView
+        android:id="@+id/breweryListView"
+        android:minWidth="25px"
+        android:minHeight="25px"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/databaseConnectionTester" />
-    <Button
-        android:text="Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/button1" />
+        android:layout_height="match_parent" />
 </LinearLayout>

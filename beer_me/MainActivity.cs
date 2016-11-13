@@ -23,11 +23,10 @@ namespace beer_me
 		TextView database;
 		JsonValue rawBreweryData;
 
-
 		List<Brewery> breweries = new List<Brewery>();
 
 		// Views
-		Button button;
+		ListView breweryListView;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -38,48 +37,49 @@ namespace beer_me
 
 			SetContentView(Resource.Layout.Main);
 
-
-			// Database connection 
-			database = FindViewById<TextView>(Resource.Id.databaseConnectionTester);
-
-			database.Text = string.Format("waiting...");
-
-			var result = createDatabase(pathToDatabase);
-			Console.WriteLine("Database connected with {0} result", result);
+			// Sqlite not being used yet
+			//var result = createDatabase(pathToDatabase);
+			//Console.WriteLine("Database connected with {0} result", result);
 
 			collectViews();
 
 			attachListeners();
+
+			GetBreweryDataAsync();
 
 		}
 
 
 		private void collectViews()
 		{
-			button = FindViewById<Button>(Resource.Id.button1);
+			breweryListView = FindViewById<ListView>(Resource.Id.breweryListView);
 		}
 
 		private void attachListeners()
 		{
-			button.Click += async (sender, e) =>
-			{
-				try
-				{
-					string url = "https://sheetsu.com/apis/v1.0/a05f04d4d9d2";
-					rawBreweryData = await FetchDataAsync(url);
-					database.Text = string.Format("Brewery data retrieved");
-					populateBreweriesTable(rawBreweryData);
-				}
-				catch (Exception)
-				{
-					Console.WriteLine(e);
-				}
-
-			};
+			
 		}
 
 
-		private void populateBreweriesTable(JsonValue breweryData)
+		async Task<String> GetBreweryDataAsync()
+		{
+			try
+			{
+				string url = "https://sheetsu.com/apis/v1.0/a05f04d4d9d2";
+				rawBreweryData = await FetchDataAsync(url);
+				database.Text = string.Format("Brewery data retrieved");
+				generateBreweryList(rawBreweryData);
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+			}
+
+			return "OK";
+		}
+			
+
+		private void generateBreweryList(JsonValue breweryData)
 		{
 
 			if (breweryData != null)
@@ -98,10 +98,28 @@ namespace beer_me
 					breweries.Add(newBrewery);
 				}
 			}
-
+			breweryListView.Adapter = new BreweryListAdapter(this, breweries);
+			breweryListView.FastScrollEnabled = true;
 		}
 
 
+		// REST 
+
+		private async Task<JsonValue> FetchDataAsync(string url)
+		{
+			HttpWebRequest request = (HttpWebRequest)WebRequest.Create(new Uri(url));
+			request.ContentType = "application/json";
+			request.Method = "GET";
+
+			using (WebResponse response = await request.GetResponseAsync())
+			{
+				using (Stream stream = response.GetResponseStream())
+				{
+					JsonValue jsonDoc = await Task.Run(() => JsonValue.Load(stream));
+					return jsonDoc;
+				}
+			}
+		}
 
 		// SQLite
 
@@ -124,26 +142,6 @@ namespace beer_me
 			}
 		}
 
-
-
-
-		// REST 
-
-		private async Task<JsonValue> FetchDataAsync(string url)
-		{
-			HttpWebRequest request = (HttpWebRequest)WebRequest.Create(new Uri(url));
-			request.ContentType = "application/json";
-			request.Method = "GET";
-
-			using (WebResponse response = await request.GetResponseAsync())
-			{
-				using (Stream stream = response.GetResponseStream())
-				{
-					JsonValue jsonDoc = await Task.Run(() => JsonValue.Load(stream));
-					return jsonDoc;
-				}
-			}
-		}
 	}
 }
 

@@ -33,7 +33,7 @@ namespace beer_me
 
 		public override string ToString()
 		{
-			return string.Format("[ID={0}, Name={1}, City={2}]", ID, Name, City);
+			return string.Format("{0} - {1}", Name, City);
 		}
 	}
 }
