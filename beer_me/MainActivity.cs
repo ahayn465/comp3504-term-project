@@ -23,6 +23,10 @@ namespace beer_me
 		TextView database;
 		JsonValue rawBreweryData;
 
+
+		List<Brewery> breweries = new List<Brewery>();
+
+		// Views
 		Button button;
 
 		protected override void OnCreate(Bundle savedInstanceState)
@@ -41,7 +45,7 @@ namespace beer_me
 			database.Text = string.Format("waiting...");
 
 			var result = createDatabase(pathToDatabase);
-			//Console.WriteLine("Database connected with {0} result", result);
+			Console.WriteLine("Database connected with {0} result", result);
 
 			collectViews();
 
@@ -63,7 +67,7 @@ namespace beer_me
 				{
 					string url = "https://sheetsu.com/apis/v1.0/a05f04d4d9d2";
 					rawBreweryData = await FetchDataAsync(url);
-					database.Text = string.Format("Response: {0}", rawBreweryData);
+					database.Text = string.Format("Brewery data retrieved");
 					populateBreweriesTable(rawBreweryData);
 				}
 				catch (Exception)
@@ -77,11 +81,21 @@ namespace beer_me
 
 		private void populateBreweriesTable(JsonValue breweryData)
 		{
+
 			if (breweryData != null)
 			{
 				foreach (var b in breweryData)
 				{
-					Console.WriteLine(b.ToString());
+					JsonValue brewery = (System.Json.JsonValue)b;
+
+					var newBrewery = new Brewery(brewery["id"], 
+					                             brewery["name"], 
+					                             brewery["address"], 
+					                             brewery["city"], 
+					                             brewery["phone"], 
+					                             brewery["latd"], 
+					                             brewery["longd"]);
+					breweries.Add(newBrewery);
 				}
 			}
 
@@ -96,7 +110,7 @@ namespace beer_me
 			try
 			{
 				var connection = new SQLiteAsyncConnection(path);
-				connection.CreateTableAsync<Brewery>().ContinueWith(t =>
+				connection.CreateTableAsync<TableBrewery>().ContinueWith(t =>
 				{
 					database.Text = string.Format("Database connected, {0}", t);
 				});

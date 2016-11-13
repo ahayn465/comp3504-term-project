@@ -1540,7 +1540,10 @@ namespace beer_me
 			public const int abc_vector_test = 2130837586;
 			
 			// aapt resource value: 0x7f020053
-			public const int notification_template_icon_bg = 2130837587;
+			public const int icon = 2130837587;
+			
+			// aapt resource value: 0x7f020054
+			public const int notification_template_icon_bg = 2130837588;
 			
 			static Drawable()
 			{

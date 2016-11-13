@@ -5,7 +5,7 @@ namespace beer_me
 {
 	public class Brewery
 	{
-		[PrimaryKey, AutoIncrement]
+		
 		public int ID { get; set; }
 
 		private string Name { get; set; }
@@ -20,9 +20,20 @@ namespace beer_me
 
 		private int Long { get; set; }
 
+		public Brewery(int id, string name, string address, string city, string phone, int lat, int longd)
+		{
+			this.ID = id;
+			this.Name = name;
+			this.Address = address;
+			this.City = city;
+			this.Phone = phone;
+			this.Lat = lat;
+			this.Long = longd;
+		}
+
 		public override string ToString()
 		{
-			return string.Format("[Person: ID={0}, Name={1}, Address={2}]", ID, Name, Address);
+			return string.Format("[ID={0}, Name={1}, City={2}]", ID, Name, City);
 		}
 	}
 }
