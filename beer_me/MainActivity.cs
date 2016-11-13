@@ -13,7 +13,6 @@ using System.Net;
 
 using Newtonsoft.Json;
 
-
 namespace beer_me
 {
 	[Activity(Label = "beer_me", MainLauncher = true, Icon = "@mipmap/icon")]
@@ -44,11 +43,12 @@ namespace beer_me
 
 		}
 
+
 		async Task<String> GetBreweryDataAsync()
 		{
 			try
 			{
-				string url = "https://sheetsu.com/apis/v1.0/a05f04d4d9d2";
+				string url = "http://192.168.1.74:4200/breweries";
 				rawBreweryData = await FetchDataAsync(url);
 				generateBreweryList(rawBreweryData);
 			}
@@ -63,6 +63,7 @@ namespace beer_me
 
 		private void generateBreweryList(JsonValue breweryData)
 		{
+			Console.WriteLine("HERE");
 
 			if (breweryData != null)
 			{
