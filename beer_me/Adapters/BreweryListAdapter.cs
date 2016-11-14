@@ -37,7 +37,7 @@ namespace beer_me
 
 		public override long GetItemId(int position)
 		{
-			return breweries[position].ID;
+			return position;
 		}
 
 		public override View GetView(int position, View convertView, ViewGroup parent)

@@ -6,9 +6,11 @@ namespace beer_me
 	public class Brewery
 	{
 		
-		public int ID { get; set; }
+		public string ID { get; set; }
 
 		private string Name { get; set; }
+
+		private string Description { get; set; }
 
 		private string Address { get; set; }
 
@@ -16,19 +18,14 @@ namespace beer_me
 
 		private string Phone { get; set; }
 
-		private int Lat { get; set; } 
-
-		private int Long { get; set; }
-
-		public Brewery(int id, string name, string address, string city, string phone, int lat, int longd)
+		public Brewery(string id, string name, string description, string address, string city, string phone)
 		{
 			this.ID = id;
 			this.Name = name;
+			this.Description = description;
 			this.Address = address;
 			this.City = city;
 			this.Phone = phone;
-			this.Lat = lat;
-			this.Long = longd;
 		}
 
 		public override string ToString()

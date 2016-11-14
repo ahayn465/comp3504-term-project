@@ -48,7 +48,7 @@ namespace beer_me
 		{
 			try
 			{
-				string url = "http://192.168.1.74:4200/breweries";
+				string url = "http://blowfish.asba.development.c66.me/api/breweries";
 				rawBreweryData = await FetchDataAsync(url);
 				generateBreweryList(rawBreweryData);
 			}
@@ -63,21 +63,20 @@ namespace beer_me
 
 		private void generateBreweryList(JsonValue breweryData)
 		{
-			Console.WriteLine("HERE");
-
+			Console.WriteLine(breweryData.ToString());
 			if (breweryData != null)
 			{
 				foreach (var b in breweryData)
 				{
 					JsonValue brewery = (System.Json.JsonValue)b;
+					Console.WriteLine(brewery.ToString());
 
-					var newBrewery = new Brewery(brewery["id"], 
+					var newBrewery = new Brewery(brewery["_id"], 
 					                             brewery["name"], 
+					                             brewery["description"],
 					                             brewery["address"], 
 					                             brewery["city"], 
-					                             brewery["phone"], 
-					                             brewery["latd"], 
-					                             brewery["longd"]);
+					                             brewery["phone"]);
 					breweries.Add(newBrewery);
 				}
 			}
