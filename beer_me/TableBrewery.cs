@@ -8,15 +8,17 @@ namespace beer_me
 		[PrimaryKey, AutoIncrement]
 		public string ID { get; set; }
 
-		private string Name { get; set; }
+		public string BreweryId { get; set; }
 
-		private string Description { get; set; }
+		public string Name { get; set; }
 
-		private string Address { get; set; }
+		public string Description { get; set; }
 
-		private string City { get; set; }
+		public string Address { get; set; }
 
-		private string Phone { get; set; }
+		public string City { get; set; }
+
+		public string Phone { get; set; }
 
 		public override string ToString()
 		{

@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Net;
 
 using Newtonsoft.Json;
+using System.Linq;
 
 namespace beer_me
 {
@@ -22,6 +23,7 @@ namespace beer_me
 		JsonValue rawBreweryData;
 
 		List<Brewery> breweries = new List<Brewery>();
+		string pathToDatabase;
 
 		// Views
 		ListView breweryListView;
@@ -33,10 +35,10 @@ namespace beer_me
 			SetContentView(Resource.Layout.Main);
 
 			// Sqlite not being used yet
-			//var docsFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
-			//var pathToDatabase = System.IO.Path.Combine(docsFolder, "db_sqlnet.db");
-			//var result = createDatabase(pathToDatabase);
-			//Console.WriteLine("Database connected with {0} result", result);
+			var docsFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
+			pathToDatabase = System.IO.Path.Combine(docsFolder, "db_sqlnet.db");
+			var result = createDatabase(pathToDatabase);
+			Console.WriteLine("----- Database connected with {0} result", result);
 
 			breweryListView = FindViewById<ListView>(Resource.Id.breweryListView);
 
@@ -80,7 +82,17 @@ namespace beer_me
 					                             brewery["address"], 
 					                             brewery["city"], 
 					                             brewery["phone"]);
+
+					var dbBrewery = new TableBrewery { 
+						BreweryId = brewery["_id"],
+					 	Name = brewery["name"],
+						Description = brewery["description"],
+						Address = brewery["address"],
+						City = brewery["city"],
+						Phone = brewery["phone"]
+					};
 					breweries.Add(newBrewery);
+					insertUpdateData(dbBrewery, pathToDatabase);
 				}
 			}
 			breweryListViewAdapter = new BreweryListAdapter(this, breweries);
@@ -94,6 +106,14 @@ namespace beer_me
 		{
 			var brewery = this.breweryListViewAdapter.getBreweryAtPostition(e.Position);
 			Toast.MakeText(this, brewery.Name, ToastLength.Short).Show();
+			var brew = queryBreweries(pathToDatabase, brewery.ID);
+
+			var l = brew.Count();
+			Console.WriteLine(l);
+			foreach (var b in brew)
+			{
+				Console.WriteLine(b.Name);
+			}
 		}
 
 		// REST 
@@ -123,7 +143,7 @@ namespace beer_me
 				var connection = new SQLiteAsyncConnection(path);
 				connection.CreateTableAsync<TableBrewery>().ContinueWith(t =>
 				{
-					//do something
+					Console.WriteLine("-----Tables created" + path);
 				});
 
 				return "Database created";
@@ -133,6 +153,35 @@ namespace beer_me
 			{
 				return ex.Message;
 			}
+		}
+
+		private string insertUpdateData(TableBrewery data, string path)
+		{
+			try
+			{
+				
+				var db = new SQLiteAsyncConnection(path);
+				var r = db.QueryAsync<TableBrewery>("select * from TableBrewery where breweryId = ?", data.ID);
+
+				Console.Write(r);
+				var res = db.InsertAsync(data);
+				Console.WriteLine("Insert", res);
+				return "Data added/updated";
+
+
+
+			}
+			catch (SQLiteException ex)
+			{
+				return ex.Message;
+			}
+		}
+
+		public static IEnumerable<TableBrewery> queryBreweries(string path, string id)
+		{
+			
+			var db = new SQLiteConnection(path);
+			return db.Query<TableBrewery>("select * from TableBrewery where breweryId = ?", id);
 		}
 
 	}
