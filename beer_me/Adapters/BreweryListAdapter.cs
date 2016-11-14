@@ -40,6 +40,11 @@ namespace beer_me
 			return position;
 		}
 
+		public Brewery getBreweryAtPostition(int position)
+		{
+			return breweries[position];
+		}
+
 		public override View GetView(int position, View convertView, ViewGroup parent)
 		{
 			var brewery = breweries[position];

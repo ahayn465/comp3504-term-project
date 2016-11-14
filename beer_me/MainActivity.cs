@@ -25,6 +25,7 @@ namespace beer_me
 
 		// Views
 		ListView breweryListView;
+		BreweryListAdapter breweryListViewAdapter;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -80,10 +81,18 @@ namespace beer_me
 					breweries.Add(newBrewery);
 				}
 			}
-			breweryListView.Adapter = new BreweryListAdapter(this, breweries);
+			breweryListViewAdapter = new BreweryListAdapter(this, breweries);
+			breweryListView.Adapter = breweryListViewAdapter;
 			breweryListView.FastScrollEnabled = true;
+			breweryListView.ItemClick += breweryListView_ItemClick;
 		}
 
+
+		void breweryListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
+		{
+			var brewery = this.breweryListViewAdapter.getBreweryAtPostition(e.Position);
+			Toast.MakeText(this, brewery.Name, ToastLength.Short).Show();
+		}
 
 		// REST 
 

@@ -8,15 +8,15 @@ namespace beer_me
 		
 		public string ID { get; set; }
 
-		private string Name { get; set; }
+		public string Name { get; set; }
 
-		private string Description { get; set; }
+		public string Description { get; set; }
 
-		private string Address { get; set; }
+		public string Address { get; set; }
 
-		private string City { get; set; }
+		public string City { get; set; }
 
-		private string Phone { get; set; }
+		public string Phone { get; set; }
 
 		public Brewery(string id, string name, string description, string address, string city, string phone)
 		{
