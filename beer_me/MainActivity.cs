@@ -37,16 +37,18 @@ namespace beer_me
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.Main);
 
-			// Sqlite not being used yet
+			// Create SQLite database to cache brewery data 
 			var docsFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
 			pathToDatabase = System.IO.Path.Combine(docsFolder, "db_sqlnet.db");
 			var result = breweryDataService.createDatabase(pathToDatabase);
-			Console.WriteLine("----- Database connected with {0} result", result);
+			Console.WriteLine("------------------------- {0} ", result);
 
 			breweryListView = FindViewById<ListView>(Resource.Id.breweryListView);
 
-			GetBreweryDataAsync();
-
+			if (result == "TABLES_CREATED")
+			{
+				Task<String> breweriesReady = GetBreweryDataAsync();
+			}
 		}
 
 		async Task<String> GetBreweryDataAsync()
@@ -103,12 +105,7 @@ namespace beer_me
 			breweryListView.FastScrollEnabled = true;
 			breweryListView.ItemClick += breweryListView_ItemClick;
 
-			var brew = breweryDataService.queryBreweries(pathToDatabase, brewery.ID);
-			//TODO clean up the database and prevent duplicate entries
-			foreach (var b in brew)
-			{
-				Console.WriteLine(b.Name);
-			}
+		
 		}
 
 
@@ -117,14 +114,18 @@ namespace beer_me
 			var brewery = this.breweryListViewAdapter.getBreweryAtPostition(e.Position);
 			Toast.MakeText(this, brewery.Name, ToastLength.Short).Show();
 
+			//var brew = breweryDataService.queryBreweries(pathToDatabase, brewery.ID);
+			////TODO clean up the database and prevent duplicate entries
+			//foreach (var b in brew)
+			//{
+			//	Console.WriteLine(b.Name);
+			//} SOMETHING is fishy here. moving the query method to the service messed this call up
+
 			var detailView = new Intent(this, typeof(SingleBrewery));
 			detailView.PutExtra("breweryId", brewery.ID);
 			StartActivity(detailView);
 		
 		}
-
-	
-
 
 	}
 }

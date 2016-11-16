@@ -19,6 +19,7 @@ namespace beer_me
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
+			SetContentView(Resource.Layout.SingleBrewery);
 
 			string breweryId = Intent.GetStringExtra("breweryId") ?? "Error retrieving data";
 

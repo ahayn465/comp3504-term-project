@@ -1624,6 +1624,9 @@ namespace beer_me
 			// aapt resource value: 0x7f0b0054
 			public const int breweryListView = 2131427412;
 			
+			// aapt resource value: 0x7f0b0066
+			public const int button1 = 2131427430;
+			
 			// aapt resource value: 0x7f0b002e
 			public const int buttonPanel = 2131427374;
 			
@@ -1657,6 +1660,9 @@ namespace beer_me
 			// aapt resource value: 0x7f0b000c
 			public const int disableHome = 2131427340;
 			
+			// aapt resource value: 0x7f0b0064
+			public const int editText1 = 2131427428;
+			
 			// aapt resource value: 0x7f0b0047
 			public const int edit_query = 2131427399;
 			
@@ -1686,6 +1692,9 @@ namespace beer_me
 			
 			// aapt resource value: 0x7f0b0029
 			public const int image = 2131427369;
+			
+			// aapt resource value: 0x7f0b0062
+			public const int imageView1 = 2131427426;
 			
 			// aapt resource value: 0x7f0b0060
 			public const int info = 2131427424;
@@ -1731,6 +1740,9 @@ namespace beer_me
 			
 			// aapt resource value: 0x7f0b003e
 			public const int radio = 2131427390;
+			
+			// aapt resource value: 0x7f0b0065
+			public const int ratingBar1 = 2131427429;
 			
 			// aapt resource value: 0x7f0b0015
 			public const int screen = 2131427349;
@@ -1824,6 +1836,9 @@ namespace beer_me
 			
 			// aapt resource value: 0x7f0b0037
 			public const int textSpacerNoButtons = 2131427383;
+			
+			// aapt resource value: 0x7f0b0063
+			public const int textView1 = 2131427427;
 			
 			// aapt resource value: 0x7f0b005b
 			public const int time = 2131427419;
@@ -2005,7 +2020,10 @@ namespace beer_me
 			public const int select_dialog_singlechoice_material = 2130968613;
 			
 			// aapt resource value: 0x7f040026
-			public const int support_simple_spinner_dropdown_item = 2130968614;
+			public const int SingleBrewery = 2130968614;
+			
+			// aapt resource value: 0x7f040027
+			public const int support_simple_spinner_dropdown_item = 2130968615;
 			
 			static Layout()
 			{
