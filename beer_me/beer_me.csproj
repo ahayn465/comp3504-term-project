@@ -87,6 +87,8 @@
     <Compile Include="SQLite.cs" />
     <Compile Include="TableBrewery.cs" />
     <Compile Include="Adapters\BreweryListAdapter.cs" />
+    <Compile Include="Resources\layout\SingleBrewery.cs" />
+    <Compile Include="BreweryDataService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

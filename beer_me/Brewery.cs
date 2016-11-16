@@ -3,20 +3,8 @@ using SQLite;
 
 namespace beer_me
 {
-	public class Brewery
+	public class Brewery:TableBrewery
 	{
-		
-		public string ID { get; set; }
-
-		public string Name { get; set; }
-
-		public string Description { get; set; }
-
-		public string Address { get; set; }
-
-		public string City { get; set; }
-
-		public string Phone { get; set; }
 
 		public Brewery(string id, string name, string description, string address, string city, string phone)
 		{
