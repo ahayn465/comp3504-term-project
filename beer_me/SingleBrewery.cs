@@ -23,6 +23,7 @@ namespace beer_me
 
 		TextView breweryName;
 		TextView breweryDescription;
+		ImageView breweryImage;
 
 
 
@@ -45,6 +46,7 @@ namespace beer_me
 		{
 			this.breweryName = FindViewById<TextView>(Resource.Id.breweryName);
 			this.breweryDescription = FindViewById<TextView>(Resource.Id.breweryDescription);
+			this.breweryImage = FindViewById<ImageView>(Resource.Id.breweryImage);
 		}
 
 		private void populateBrewery(Brewery brewery)
@@ -53,6 +55,8 @@ namespace beer_me
 
 			this.breweryName.Text = brewery.getName();
 			this.breweryDescription.Text = brewery.getDescription();
+
+			//this.breweryImage.SetImageResource(Resource.Drawable.)
 		}
 
 
@@ -96,36 +100,5 @@ namespace beer_me
 
 		}
 
-		//async Task<Brewery> GetBreweryDataAsync()
-		//{
-		//	try
-		//	{
-		//		string url = "http://blowfish.asba.development.c66.me/api/breweries/" + breweryId;
-		//		rawBreweryData = await breweryDataService.FetchDataAsync(url);
-
-		//		foreach (var b in rawBreweryData)
-		//		{
-		//			JsonValue brewery = (JsonValue)b;
-		//			Console.WriteLine(brewery["name"].ToString());
-
-		//			var newBrewery = new Brewery(brewery["_id"],
-		//										 brewery["name"],
-		//										 brewery["description"],
-		//										 brewery["address"],
-		//										 brewery["city"],
-		//										 brewery["phone"]);
-
-		//			Console.WriteLine(newBrewery.ID);
-		//			return newBrewery;
-		//		}
-
-		//	}
-		//	catch (Exception e)
-		//	{
-		//		Console.WriteLine(e);
-		//	}
-
-		//	return null;
-		//}
 	}
 }
