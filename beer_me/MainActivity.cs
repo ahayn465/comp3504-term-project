@@ -38,17 +38,15 @@ namespace beer_me
 			SetContentView(Resource.Layout.Main);
 
 			// Create SQLite database to cache brewery data 
-			var docsFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
-			pathToDatabase = System.IO.Path.Combine(docsFolder, "db_sqlnet.db");
-			var result = breweryDataService.createDatabase(pathToDatabase);
-			Console.WriteLine("------------------------- {0} ", result);
+			//var docsFolder = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
+			//pathToDatabase = System.IO.Path.Combine(docsFolder, "db_sqlnet.db");
+			//var result = breweryDataService.createDatabase(pathToDatabase);
+			//Console.WriteLine("------------------------- {0} ", result);
 
 			breweryListView = FindViewById<ListView>(Resource.Id.breweryListView);
 
-			if (result == "TABLES_CREATED")
-			{
-				Task<String> breweriesReady = GetBreweryDataAsync();
-			}
+
+			Task<String> breweriesReady = GetBreweryDataAsync();
 		}
 
 		async Task<String> GetBreweryDataAsync()
@@ -56,7 +54,8 @@ namespace beer_me
 			try
 			{
 				string url = "http://blowfish.asba.development.c66.me/api/breweries";
-				rawBreweryData = await breweryDataService.FetchDataAsync(url);
+				JsonValue rawBreweryData = await breweryDataService.FetchDataAsync(url);
+				Console.WriteLine( rawBreweryData.GetType() );
 				generateBreweryList(rawBreweryData);
 			}
 			catch (Exception e)
@@ -70,13 +69,11 @@ namespace beer_me
 
 		private void generateBreweryList(JsonValue breweryData)
 		{
-			Console.WriteLine(breweryData.ToString());
 			if (breweryData != null)
 			{
 				foreach (var b in breweryData)
 				{
-					JsonValue brewery = (System.Json.JsonValue)b;
-					Console.WriteLine(brewery.ToString());
+					JsonValue brewery = (JsonValue)b;
 
 					var newBrewery = new Brewery(brewery["_id"],
 												 brewery["name"],
@@ -85,18 +82,11 @@ namespace beer_me
 												 brewery["city"],
 												 brewery["phone"]);
 
-					var dbBrewery = new TableBrewery
-					{
-						BreweryId = brewery["_id"],
-						Name = brewery["name"],
-						Description = brewery["description"],
-						Address = brewery["address"],
-						City = brewery["city"],
-						Phone = brewery["phone"]
-					};
 					breweries.Add(newBrewery);
-					breweryDataService.insertUpdateData(dbBrewery, pathToDatabase);
 				}
+			}
+			else {
+				Console.WriteLine("No Data");
 			}
 
 			// TODO move this to its own method
@@ -112,14 +102,6 @@ namespace beer_me
 		void breweryListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
 		{
 			var brewery = this.breweryListViewAdapter.getBreweryAtPostition(e.Position);
-			Toast.MakeText(this, brewery.Name, ToastLength.Short).Show();
-
-			//var brew = breweryDataService.queryBreweries(pathToDatabase, brewery.ID);
-			////TODO clean up the database and prevent duplicate entries
-			//foreach (var b in brew)
-			//{
-			//	Console.WriteLine(b.Name);
-			//} SOMETHING is fishy here. moving the query method to the service messed this call up
 
 			var detailView = new Intent(this, typeof(SingleBrewery));
 			detailView.PutExtra("breweryId", brewery.ID);

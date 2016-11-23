@@ -20,5 +20,20 @@ namespace beer_me
 		{
 			return string.Format("{0} - {1}", Name, City);
 		}
+
+		public string getName()
+		{
+			return this.Name;
+		}
+
+		public string getDescription()
+		{
+			return this.Description;
+		}
+
+		public string toString()
+		{
+			return this.getName() + " " + this.getDescription();
+		}
 	}
 }
