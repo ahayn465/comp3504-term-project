@@ -36,8 +36,7 @@ namespace beer_me
 
 			breweryId = Intent.GetStringExtra("breweryId") ?? "Error retrieving data";
 
-			Console.WriteLine("+++++++++++++++++++++++++++++++++++++++++++++  >>" + breweryId);
-			this.findViews();
+			findViews();
 
 			GetBreweryDataAsync();
 		}
@@ -51,7 +50,10 @@ namespace beer_me
 
 		private void populateBrewery(Brewery brewery)
 		{
-			Console.WriteLine(brewery.toString());
+			Console.WriteLine("In populateBrewery");
+			
+			var b = brewery.getName().Replace(" ", "_");
+			Console.WriteLine("The Name" , b);
 
 			this.breweryName.Text = brewery.getName();
 			this.breweryDescription.Text = brewery.getDescription();
@@ -66,7 +68,6 @@ namespace beer_me
 			{
 				string url = "http://blowfish.asba.development.c66.me/api/breweries/" + breweryId;
 				rawBreweryData = await breweryDataService.FetchDataAsync(url);
-				Console.WriteLine(rawBreweryData.GetType());
 				generateBrewery((System.Json.JsonObject)rawBreweryData);
 			}
 			catch (Exception e)
@@ -88,10 +89,10 @@ namespace beer_me
 											 breweryData["city"],
 											 breweryData["phone"]);
 
-				Console.WriteLine(newBrewery.getName());
+				populateBrewery(newBrewery);
 
-				this.breweryName.Text = newBrewery.getName();
-				this.breweryDescription.Text = newBrewery.getDescription();
+				//this.breweryName.Text = newBrewery.getName();
+				//this.breweryDescription.Text = newBrewery.getDescription();
 
 			}
 			else {
