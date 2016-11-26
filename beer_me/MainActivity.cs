@@ -80,7 +80,9 @@ namespace beer_me
 												 brewery["address"],
 												 brewery["city"],
 												 brewery["phone"], 
-					                             brewery["image"]);
+					                             brewery["image"],
+					                             brewery["latd"],
+											 	 brewery["longd"]);
 
 					breweries.Add(newBrewery);
 				}

@@ -1714,8 +1714,8 @@ namespace beer_me
 			// aapt resource value: 0x7f0b0022
 			public const int bottom = 2131427362;
 			
-			// aapt resource value: 0x7f0b0064
-			public const int breweryDescription = 2131427428;
+			// aapt resource value: 0x7f0b0065
+			public const int breweryDescription = 2131427429;
 			
 			// aapt resource value: 0x7f0b0062
 			public const int breweryImage = 2131427426;
@@ -1723,8 +1723,8 @@ namespace beer_me
 			// aapt resource value: 0x7f0b0054
 			public const int breweryListView = 2131427412;
 			
-			// aapt resource value: 0x7f0b0063
-			public const int breweryName = 2131427427;
+			// aapt resource value: 0x7f0b0064
+			public const int breweryName = 2131427428;
 			
 			// aapt resource value: 0x7f0b002e
 			public const int buttonPanel = 2131427374;
@@ -1803,6 +1803,9 @@ namespace beer_me
 			
 			// aapt resource value: 0x7f0b002b
 			public const int list_item = 2131427371;
+			
+			// aapt resource value: 0x7f0b0063
+			public const int mapView = 2131427427;
 			
 			// aapt resource value: 0x7f0b0058
 			public const int media_actions = 2131427416;
