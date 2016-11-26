@@ -15,7 +15,7 @@ using Android.Widget;
 
 namespace beer_me
 {
-	[Activity(Label = "Brewery Detailed View")]
+	[Activity()]
 	public class SingleBrewery : Activity
 	{
 		string breweryId;

@@ -14,7 +14,7 @@ using Android.Content;
 
 namespace beer_me
 {
-	[Activity(Label = "ASBA Brewery Members", MainLauncher = true, Icon = "@mipmap/icon")]
+	[Activity(MainLauncher = true, Icon = "@mipmap/icon")]
 	public class MainActivity : Activity
 	{
 
