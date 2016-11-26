@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Android.App;
 using Android.Content;
+using Android.Content.Res;
 using Android.OS;
 using Android.Runtime;
 using Android.Views;
@@ -50,15 +51,16 @@ namespace beer_me
 
 		private void populateBrewery(Brewery brewery)
 		{
-			Console.WriteLine("In populateBrewery");
-			
-			var b = brewery.getName().Replace(" ", "_");
-			Console.WriteLine("The Name" , b);
+
+			String imageString = brewery.getImage(); // todo make getter
 
 			this.breweryName.Text = brewery.getName();
 			this.breweryDescription.Text = brewery.getDescription();
 
-			//this.breweryImage.SetImageResource(Resource.Drawable.)
+
+			var resourceId = (int)typeof(Resource.Drawable).GetField(imageString).GetValue(null);
+
+			this.breweryImage.SetImageResource(resourceId);
 		}
 
 
@@ -87,7 +89,8 @@ namespace beer_me
 											 breweryData["description"],
 											 breweryData["address"],
 											 breweryData["city"],
-											 breweryData["phone"]);
+											 breweryData["phone"], 
+			                            	 breweryData["image"]);
 
 				populateBrewery(newBrewery);
 

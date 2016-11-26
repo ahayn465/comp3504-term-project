@@ -790,35 +790,35 @@ namespace beer_me
 		public partial class Color
 		{
 			
-			// aapt resource value: 0x7f0a003a
-			public const int abc_background_cache_hint_selector_material_dark = 2131361850;
-			
 			// aapt resource value: 0x7f0a003b
-			public const int abc_background_cache_hint_selector_material_light = 2131361851;
+			public const int abc_background_cache_hint_selector_material_dark = 2131361851;
 			
 			// aapt resource value: 0x7f0a003c
-			public const int abc_btn_colored_borderless_text_material = 2131361852;
+			public const int abc_background_cache_hint_selector_material_light = 2131361852;
 			
 			// aapt resource value: 0x7f0a003d
-			public const int abc_color_highlight_material = 2131361853;
+			public const int abc_btn_colored_borderless_text_material = 2131361853;
+			
+			// aapt resource value: 0x7f0a003e
+			public const int abc_color_highlight_material = 2131361854;
 			
 			// aapt resource value: 0x7f0a0000
 			public const int abc_input_method_navigation_guard = 2131361792;
 			
-			// aapt resource value: 0x7f0a003e
-			public const int abc_primary_text_disable_only_material_dark = 2131361854;
-			
 			// aapt resource value: 0x7f0a003f
-			public const int abc_primary_text_disable_only_material_light = 2131361855;
+			public const int abc_primary_text_disable_only_material_dark = 2131361855;
 			
 			// aapt resource value: 0x7f0a0040
-			public const int abc_primary_text_material_dark = 2131361856;
+			public const int abc_primary_text_disable_only_material_light = 2131361856;
 			
 			// aapt resource value: 0x7f0a0041
-			public const int abc_primary_text_material_light = 2131361857;
+			public const int abc_primary_text_material_dark = 2131361857;
 			
 			// aapt resource value: 0x7f0a0042
-			public const int abc_search_url_text = 2131361858;
+			public const int abc_primary_text_material_light = 2131361858;
+			
+			// aapt resource value: 0x7f0a0043
+			public const int abc_search_url_text = 2131361859;
 			
 			// aapt resource value: 0x7f0a0001
 			public const int abc_search_url_text_normal = 2131361793;
@@ -829,32 +829,32 @@ namespace beer_me
 			// aapt resource value: 0x7f0a0003
 			public const int abc_search_url_text_selected = 2131361795;
 			
-			// aapt resource value: 0x7f0a0043
-			public const int abc_secondary_text_material_dark = 2131361859;
-			
 			// aapt resource value: 0x7f0a0044
-			public const int abc_secondary_text_material_light = 2131361860;
+			public const int abc_secondary_text_material_dark = 2131361860;
 			
 			// aapt resource value: 0x7f0a0045
-			public const int abc_tint_btn_checkable = 2131361861;
+			public const int abc_secondary_text_material_light = 2131361861;
 			
 			// aapt resource value: 0x7f0a0046
-			public const int abc_tint_default = 2131361862;
+			public const int abc_tint_btn_checkable = 2131361862;
 			
 			// aapt resource value: 0x7f0a0047
-			public const int abc_tint_edittext = 2131361863;
+			public const int abc_tint_default = 2131361863;
 			
 			// aapt resource value: 0x7f0a0048
-			public const int abc_tint_seek_thumb = 2131361864;
+			public const int abc_tint_edittext = 2131361864;
 			
 			// aapt resource value: 0x7f0a0049
-			public const int abc_tint_spinner = 2131361865;
+			public const int abc_tint_seek_thumb = 2131361865;
 			
 			// aapt resource value: 0x7f0a004a
-			public const int abc_tint_switch_thumb = 2131361866;
+			public const int abc_tint_spinner = 2131361866;
 			
 			// aapt resource value: 0x7f0a004b
-			public const int abc_tint_switch_track = 2131361867;
+			public const int abc_tint_switch_thumb = 2131361867;
+			
+			// aapt resource value: 0x7f0a004c
+			public const int abc_tint_switch_track = 2131361868;
 			
 			// aapt resource value: 0x7f0a0004
 			public const int accent_material_dark = 2131361796;
@@ -1012,17 +1012,20 @@ namespace beer_me
 			// aapt resource value: 0x7f0a0037
 			public const int switch_thumb_disabled_material_light = 2131361847;
 			
-			// aapt resource value: 0x7f0a004c
-			public const int switch_thumb_material_dark = 2131361868;
-			
 			// aapt resource value: 0x7f0a004d
-			public const int switch_thumb_material_light = 2131361869;
+			public const int switch_thumb_material_dark = 2131361869;
+			
+			// aapt resource value: 0x7f0a004e
+			public const int switch_thumb_material_light = 2131361870;
 			
 			// aapt resource value: 0x7f0a0038
 			public const int switch_thumb_normal_material_dark = 2131361848;
 			
 			// aapt resource value: 0x7f0a0039
 			public const int switch_thumb_normal_material_light = 2131361849;
+			
+			// aapt resource value: 0x7f0a003a
+			public const int theme_devicedefault_background = 2131361850;
 			
 			static Color()
 			{
@@ -1543,7 +1546,97 @@ namespace beer_me
 			public const int icon = 2130837587;
 			
 			// aapt resource value: 0x7f020054
-			public const int notification_template_icon_bg = 2130837588;
+			public const int logo_alley_cat = 2130837588;
+			
+			// aapt resource value: 0x7f020055
+			public const int logo_banff_ave = 2130837589;
+			
+			// aapt resource value: 0x7f020056
+			public const int logo_bench_creek = 2130837590;
+			
+			// aapt resource value: 0x7f020057
+			public const int logo_bent_stick = 2130837591;
+			
+			// aapt resource value: 0x7f020058
+			public const int logo_big_rock = 2130837592;
+			
+			// aapt resource value: 0x7f020059
+			public const int logo_blindman = 2130837593;
+			
+			// aapt resource value: 0x7f02005a
+			public const int logo_brewsters = 2130837594;
+			
+			// aapt resource value: 0x7f02005b
+			public const int logo_cold_garden = 2130837595;
+			
+			// aapt resource value: 0x7f02005c
+			public const int logo_coulee = 2130837596;
+			
+			// aapt resource value: 0x7f02005d
+			public const int logo_dandy = 2130837597;
+			
+			// aapt resource value: 0x7f02005e
+			public const int logo_drummond = 2130837598;
+			
+			// aapt resource value: 0x7f02005f
+			public const int logo_gp = 2130837599;
+			
+			// aapt resource value: 0x7f020060
+			public const int logo_grain_bin = 2130837600;
+			
+			// aapt resource value: 0x7f020061
+			public const int logo_grizzly_paw = 2130837601;
+			
+			// aapt resource value: 0x7f020062
+			public const int logo_half_hitch = 2130837602;
+			
+			// aapt resource value: 0x7f020063
+			public const int logo_hells_basement = 2130837603;
+			
+			// aapt resource value: 0x7f020064
+			public const int logo_jasper = 2130837604;
+			
+			// aapt resource value: 0x7f020065
+			public const int logo_last_best = 2130837605;
+			
+			// aapt resource value: 0x7f020066
+			public const int logo_norsemen = 2130837606;
+			
+			// aapt resource value: 0x7f020067
+			public const int logo_olds_college = 2130837607;
+			
+			// aapt resource value: 0x7f020068
+			public const int logo_ribstone = 2130837608;
+			
+			// aapt resource value: 0x7f020069
+			public const int logo_something_brewing = 2130837609;
+			
+			// aapt resource value: 0x7f02006a
+			public const int logo_theortically = 2130837610;
+			
+			// aapt resource value: 0x7f02006b
+			public const int logo_tool_shed = 2130837611;
+			
+			// aapt resource value: 0x7f02006c
+			public const int logo_troubled_monk = 2130837612;
+			
+			// aapt resource value: 0x7f02006d
+			public const int logo_two_sergents = 2130837613;
+			
+			// aapt resource value: 0x7f02006e
+			public const int logo_village = 2130837614;
+			
+			// aapt resource value: 0x7f02006f
+			public const int logo_wild_rose = 2130837615;
+			
+			// aapt resource value: 0x7f020070
+			public const int logo_wood_buffalo = 2130837616;
+			
+			// aapt resource value: 0x7f020071
+			public const int logo_yellowhead = 2130837617;
+			
+			// aapt resource value: 0x7f020072
+			public const int notification_template_icon_bg = 2130837618;
 			
 			static Drawable()
 			{
@@ -2921,6 +3014,9 @@ namespace beer_me
 			
 			// aapt resource value: 0x7f0800fb
 			public const int Theme_AppCompat_NoActionBar = 2131230971;
+			
+			// aapt resource value: 0x7f08014b
+			public const int Theme_Custom = 2131231051;
 			
 			// aapt resource value: 0x7f0800fc
 			public const int ThemeOverlay_AppCompat = 2131230972;

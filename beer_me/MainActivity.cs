@@ -55,7 +55,6 @@ namespace beer_me
 			{
 				string url = "http://blowfish.asba.development.c66.me/api/breweries";
 				JsonValue rawBreweryData = await breweryDataService.FetchDataAsync(url);
-				Console.WriteLine( rawBreweryData.GetType() );
 				generateBreweryList(rawBreweryData);
 			}
 			catch (Exception e)
@@ -80,7 +79,8 @@ namespace beer_me
 												 brewery["description"],
 												 brewery["address"],
 												 brewery["city"],
-												 brewery["phone"]);
+												 brewery["phone"], 
+					                             brewery["image"]);
 
 					breweries.Add(newBrewery);
 				}
@@ -95,7 +95,6 @@ namespace beer_me
 			breweryListView.FastScrollEnabled = true;
 			breweryListView.ItemClick += breweryListView_ItemClick;
 
-		
 		}
 
 
@@ -104,7 +103,7 @@ namespace beer_me
 			var brewery = this.breweryListViewAdapter.getBreweryAtPostition(e.Position);
 
 			var detailView = new Intent(this, typeof(SingleBrewery));
-			detailView.PutExtra("breweryId", brewery.ID);
+			detailView.PutExtra("breweryId", brewery.getId());
 			StartActivity(detailView);
 		
 		}

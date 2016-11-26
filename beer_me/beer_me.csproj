@@ -106,6 +106,37 @@
     <AndroidResource Include="Resources\drawable\icon.png" />
     <AndroidResource Include="Resources\layout\SingleBrewery.axml" />
     <AndroidResource Include="Resources\mipmap-hdpi\icon.png" />
+    <AndroidResource Include="Resources\values\theme.xml" />
+    <AndroidResource Include="Resources\drawable\logo_yellowhead.png" />
+    <AndroidResource Include="Resources\drawable\logo_wood_buffalo.png" />
+    <AndroidResource Include="Resources\drawable\logo_wild_rose.png" />
+    <AndroidResource Include="Resources\drawable\logo_village.png" />
+    <AndroidResource Include="Resources\drawable\logo_two_sergents.png" />
+    <AndroidResource Include="Resources\drawable\logo_troubled_monk.png" />
+    <AndroidResource Include="Resources\drawable\logo_tool_shed.png" />
+    <AndroidResource Include="Resources\drawable\logo_theortically.jpg" />
+    <AndroidResource Include="Resources\drawable\logo_something_brewing.png" />
+    <AndroidResource Include="Resources\drawable\logo_ribstone.png" />
+    <AndroidResource Include="Resources\drawable\logo_olds_college.png" />
+    <AndroidResource Include="Resources\drawable\logo_norsemen.png" />
+    <AndroidResource Include="Resources\drawable\logo_last_best.png" />
+    <AndroidResource Include="Resources\drawable\logo_jasper.png" />
+    <AndroidResource Include="Resources\drawable\logo_hells_basement.png" />
+    <AndroidResource Include="Resources\drawable\logo_half_hitch.png" />
+    <AndroidResource Include="Resources\drawable\logo_grizzly_paw.png" />
+    <AndroidResource Include="Resources\drawable\logo_grain_bin.png" />
+    <AndroidResource Include="Resources\drawable\logo_gp.jpg" />
+    <AndroidResource Include="Resources\drawable\logo_drummond.png" />
+    <AndroidResource Include="Resources\drawable\logo_dandy.png" />
+    <AndroidResource Include="Resources\drawable\logo_coulee.png" />
+    <AndroidResource Include="Resources\drawable\logo_cold_garden.png" />
+    <AndroidResource Include="Resources\drawable\logo_brewsters.png" />
+    <AndroidResource Include="Resources\drawable\logo_blindman.png" />
+    <AndroidResource Include="Resources\drawable\logo_big_rock.png" />
+    <AndroidResource Include="Resources\drawable\logo_bent_stick.jpg" />
+    <AndroidResource Include="Resources\drawable\logo_bench_creek.png" />
+    <AndroidResource Include="Resources\drawable\logo_banff_ave.png" />
+    <AndroidResource Include="Resources\drawable\logo_alley_cat.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
