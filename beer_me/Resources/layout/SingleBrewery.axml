@@ -25,6 +25,11 @@
         android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
         android:id="@+id/breweryName" />
+    <Button
+        android:text="GPS"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/gps" />
     <TextView
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:layout_width="match_parent"

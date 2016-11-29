@@ -27,6 +27,7 @@ namespace beer_me
 		TextView breweryDescription;
 		ImageView breweryImage;
 		Button mapView;
+		Button gps;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -48,6 +49,7 @@ namespace beer_me
 			this.breweryDescription = FindViewById<TextView>(Resource.Id.breweryDescription);
 			this.breweryImage = FindViewById<ImageView>(Resource.Id.breweryImage);
 			this.mapView = FindViewById<Button>(Resource.Id.mapView);
+			this.gps = FindViewById<Button>(Resource.Id.gps);
 
 			this.mapView.Click += delegate
 			{
@@ -56,11 +58,18 @@ namespace beer_me
 				var mapIntent = new Intent(Intent.ActionView, geoUri);
 				StartActivity(mapIntent);
 			};
+
+			this.gps.Click += delegate
+			{
+				Intent goToGps = new Intent(this, typeof(BeerMe));
+                StartActivity(goToGps);
+			};
 		}
 
 		private void populateBrewery(Brewery brewery)
 		{
-
+			if (brewery == null)
+				throw new ArgumentNullException(nameof(brewery));
 			String imageString = brewery.getImage();
 
 			this.breweryName.Text = brewery.getName();

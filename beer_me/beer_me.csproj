@@ -89,6 +89,7 @@
     <Compile Include="Adapters\BreweryListAdapter.cs" />
     <Compile Include="BreweryDataService.cs" />
     <Compile Include="SingleBrewery.cs" />
+    <Compile Include="BeerMe.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -137,6 +138,7 @@
     <AndroidResource Include="Resources\drawable\logo_bench_creek.png" />
     <AndroidResource Include="Resources\drawable\logo_banff_ave.png" />
     <AndroidResource Include="Resources\drawable\logo_alley_cat.png" />
+    <AndroidResource Include="Resources\layout\BeerMe.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
