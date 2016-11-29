@@ -17,9 +17,15 @@ namespace beer_me
 
 		public IEnumerable<TableBrewery> queryBreweries(string path, string id)
 		{
-
+			Console.WriteLine("Wuerying ");
 			var db = new SQLiteConnection(path);
-			return db.Query<TableBrewery>("select * from TableBrewery where breweryId = ?", id);
+			return db.Query<TableBrewery>("SELECT * FROM TableBrewery WHERE breweryId = ?", id);
+		}
+
+		public IEnumerable<TableBrewery> clearDatabase(string path)
+		{
+			var db = new SQLiteConnection(path);
+			return db.Query<TableBrewery>("DROP TABLE TableBrewery");
 		}
 
 		// REST 
@@ -51,10 +57,10 @@ namespace beer_me
 				var connection = new SQLiteAsyncConnection(path);
 				connection.CreateTableAsync<TableBrewery>().ContinueWith(t =>
 				{
-					Console.WriteLine("-----Tables created" + path);
+					//do something here?
 				});
 
-				return "Database created";
+				return "TABLES_CREATED";
 
 			}
 			catch (SQLiteException ex)

@@ -13,16 +13,14 @@ using Android.Widget;
 
 namespace beer_me
 {
-	[Activity(Label = "Brewery Detailed View")]
-	public class SingleBrewery : Activity
+	[Activity(Label = "Activity")]
+	public class Activity : Activity
 	{
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
 
-			string breweryId = Intent.GetStringExtra("breweryId") ?? "Error retrieving data";
-
-			Console.WriteLine(breweryId);
+			// Create your application here
 		}
 	}
 }
