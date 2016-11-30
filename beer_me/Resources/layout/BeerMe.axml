@@ -3,22 +3,27 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <Button
+        android:text="Find me a Beer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/locateBreweries" />
     <TextView
-        android:text=""
+        android:text="Status"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/status" />
+    <TextView
+        android:text="Latitude"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/latitude" />
     <TextView
-        android:text=""
+        android:text="Longitude"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/longitude" />
-    <TextView
-        android:text=""
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/status" />
 </LinearLayout>

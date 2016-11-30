@@ -6,9 +6,9 @@
     android:layout_height="match_parent"
     tools:actionBarNavMode="tabs">
     <ImageView
-        android:src="@android:drawable/ic_menu_gallery"
-        android:layout_width="match_parent"
-        android:layout_height="150.0dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center_horizontal"
         android:id="@+id/breweryImage" />
     <Button
         android:text="View Map"
