@@ -10,10 +10,21 @@ namespace beer_me
 {
 	public class BreweryDataService
 	{
+		List<Brewery> breweryList = new List<Brewery>();
+
 		public BreweryDataService()
 		{
 		}
 
+		public List<Brewery> getBreweryList()
+		{
+			return breweryList;
+		}
+
+		public void setBreweryList(List<Brewery> theList)
+		{
+			this.breweryList = theList;
+		}
 
 		public IEnumerable<TableBrewery> queryBreweries(string path, string id)
 		{

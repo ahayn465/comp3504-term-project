@@ -44,7 +44,7 @@ namespace beer_me
 				updateUserLocation(lastKnown);
 			}
 
-			Console.WriteLine("Location manager: ", locMgr.ToString());
+			Console.WriteLine("Location manager: ", locMgr);
 		}
 
 		private bool generateViews()
