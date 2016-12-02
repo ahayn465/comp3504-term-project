@@ -22,12 +22,9 @@ namespace beer_me
 		JsonValue rawBreweryData;
 		BreweryDataService breweryDataService;
 		Brewery brewery;
-
-		TextView breweryName;
 		TextView breweryDescription;
 		ImageView breweryImage;
-		Button mapView;
-		Button gps;
+		ImageView mapView;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
@@ -45,11 +42,9 @@ namespace beer_me
 
 		private void findViews()
 		{
-			this.breweryName = FindViewById<TextView>(Resource.Id.breweryName);
 			this.breweryDescription = FindViewById<TextView>(Resource.Id.breweryDescription);
 			this.breweryImage = FindViewById<ImageView>(Resource.Id.breweryImage);
-			this.mapView = FindViewById<Button>(Resource.Id.mapView);
-			this.gps = FindViewById<Button>(Resource.Id.gps);
+			this.mapView = FindViewById<ImageView>(Resource.Id.mapView);
 
 			this.mapView.Click += delegate
 			{
@@ -58,12 +53,6 @@ namespace beer_me
 				var mapIntent = new Intent(Intent.ActionView, geoUri);
 				StartActivity(mapIntent);
 			};
-
-			this.gps.Click += delegate
-			{
-				Intent goToGps = new Intent(this, typeof(BeerMe));
-                StartActivity(goToGps);
-			};
 		}
 
 		private void populateBrewery(Brewery brewery)
@@ -71,10 +60,7 @@ namespace beer_me
 			if (brewery == null)
 				throw new ArgumentNullException(nameof(brewery));
 			String imageString = brewery.getImage();
-
-			this.breweryName.Text = brewery.getName();
 			this.breweryDescription.Text = brewery.getDescription();
-
 
 			var resourceId = (int)typeof(Resource.Drawable).GetField(imageString).GetValue(null);
 

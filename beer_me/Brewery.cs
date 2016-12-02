@@ -17,8 +17,6 @@ namespace beer_me
 
 		public Brewery(string id, string name, string description, string address, string city, string phone, string image, string latd, string longd)
 		{
-			Console.WriteLine("Constructing", name);
-
 			this.ID = id;
 			this.Name = name;
 			this.Description = description;

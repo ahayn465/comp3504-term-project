@@ -4,6 +4,8 @@ using Android.Locations;
 using Android.OS;
 using Android.Util;
 using Android.Widget;
+using System.Text;
+using System;
 
 namespace beer_me
 {
@@ -11,67 +13,124 @@ namespace beer_me
 	public class BeerMe : Activity, ILocationListener 
 	{
 		LocationManager locMgr;
-		TextView latitude;
-		TextView longitude;
-		TextView status;
+		double latitude;
+		double longitude;
+
+		TextView latitudeView;
+		TextView longitudeView;
+		TextView statusView;
+		Button locateBreweries;
+
+		string provider;
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
 
 			SetContentView(Resource.Layout.BeerMe);
-			this.latitude = FindViewById<TextView>(Resource.Id.latitude);
-			this.longitude = FindViewById<TextView>(Resource.Id.longitude);
-			this.status = FindViewById<TextView>(Resource.Id.status);
+			bool viewsReady = generateViews();
+
+			if (viewsReady)
+			{
+				connectListeners();
+			}
 
 			locMgr = GetSystemService(Context.LocationService) as LocationManager;
+			provider = LocationManager.GpsProvider;
+			Location lastKnown = locMgr.GetLastKnownLocation(provider);
 
+			if (lastKnown != null)
+			{
+				updateUserLocation(lastKnown);
+			}
+
+			Console.WriteLine("Location manager: ", locMgr);
 		}
 
+		private bool generateViews()
+		{
+			try
+			{
+				this.latitudeView = FindViewById<TextView>(Resource.Id.latitude);
+				this.longitudeView = FindViewById<TextView>(Resource.Id.longitude);
+				this.statusView = FindViewById<TextView>(Resource.Id.status);
+				this.locateBreweries = FindViewById<Button>(Resource.Id.locateBreweries);
+				return true;
+			}
+			catch (Exception)
+			{
+				Console.WriteLine("There was an error collecting views");
+				return false;
+			}
+		}
+
+		private void connectListeners()
+		{
+			this.locateBreweries.Click += delegate
+			{
+				this.statusView.Text = "Finding you a local brew!";
+			};
+		}
+
+		private void updateUserLocation(Location userLocation)
+		{
+			latitude = userLocation.Latitude;
+			longitude = userLocation.Longitude;
+
+			latitudeView.Text = "Latitude: " + latitude;
+			longitudeView.Text = "Longitude: " + longitude;
+		}
+
+		// Lifecycle methods
 		protected override void OnResume()
 		{
 			base.OnResume();
-			string Provider = LocationManager.GpsProvider;
+			provider = LocationManager.GpsProvider;
 
-			if (locMgr.IsProviderEnabled(Provider))
+			if (locMgr.IsProviderEnabled(provider))
 			{
-				locMgr.RequestLocationUpdates(Provider, 2000, 1, this);
+				Console.WriteLine("Provider enabled", provider.ToString()	);
+				locMgr.RequestLocationUpdates(provider, 2000, 1, this);
 			}
 			else
 			{
-				Log.Info((string)locMgr, Provider + " is not available. Does the device have location services enabled?");
+				Console.WriteLine("Provider not enabled");
+				Log.Info((string)locMgr, provider + " is not available. Does the device have location services enabled?");
 			}
 		}
 
+		protected override void OnPause()
+		{
+			base.OnPause();
+			locMgr.RemoveUpdates(this);
+		}
 
 		// ILocationListener implementation
 
 		public void OnProviderEnabled(string provider)
 		{
-		   
+			Console.WriteLine(provider, "enabled");
 		}
 
 		public void OnProviderDisabled(string provider)
 		{
-
+			Console.WriteLine(provider, "disabled");
 		}
 
 		public void OnStatusChanged(string provider, Availability status, Bundle extras)
 		{
-			latitude.Text = "Status: " + status;
+			Console.WriteLine("Status Changed");
+			statusView.Text = "Status: " + status;
 		}
 
 		public void OnLocationChanged(Android.Locations.Location location)
 		{
-			latitude.Text = "Latitude: " + location.Latitude;
-			longitude.Text = "Longitude: " + location.Longitude;
+			Console.WriteLine("Location Changed");
+			updateUserLocation(location);
  		}
 
-		protected override void OnPause()
-		{
-			base.OnPause();
-			locMgr.RemoveUpdates(this); 
-		}
+		// end ILocationListener interface
+
 
 	}
 }
