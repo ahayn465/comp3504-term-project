@@ -13,13 +13,10 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
         android:id="@+id/status" />
-    <TextView
-        android:text="Latitude"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/latitude" />
     <TextView
         android:text="Longitude"
         android:textAppearance="?android:attr/textAppearanceLarge"

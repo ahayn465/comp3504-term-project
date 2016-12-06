@@ -18,12 +18,15 @@ namespace beer_me
 
 		public List<Brewery> getBreweryList()
 		{
-			return breweryList;
+			Console.WriteLine("Getting brewery list");
+			return this.breweryList;
 		}
 
 		public void setBreweryList(List<Brewery> theList)
 		{
 			this.breweryList = theList;
+			Console.WriteLine("Cheers!! ------------ Breweries set!");
+			Console.WriteLine(this.breweryList);
 		}
 
 		public IEnumerable<TableBrewery> queryBreweries(string path, string id)

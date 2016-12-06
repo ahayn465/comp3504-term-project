@@ -16,8 +16,6 @@ namespace beer_me
 		double latitude;
 		double longitude;
 
-		TextView latitudeView;
-		TextView longitudeView;
 		TextView statusView;
 		Button locateBreweries;
 
@@ -37,6 +35,8 @@ namespace beer_me
 
 			locMgr = GetSystemService(Context.LocationService) as LocationManager;
 			provider = LocationManager.GpsProvider;
+			Boolean isEnabled = locMgr.IsProviderEnabled(LocationManager.GpsProvider);
+
 			Location lastKnown = locMgr.GetLastKnownLocation(provider);
 
 			if (lastKnown != null)
@@ -51,8 +51,6 @@ namespace beer_me
 		{
 			try
 			{
-				this.latitudeView = FindViewById<TextView>(Resource.Id.latitude);
-				this.longitudeView = FindViewById<TextView>(Resource.Id.longitude);
 				this.statusView = FindViewById<TextView>(Resource.Id.status);
 				this.locateBreweries = FindViewById<Button>(Resource.Id.locateBreweries);
 				return true;
@@ -76,10 +74,9 @@ namespace beer_me
 		{
 			latitude = userLocation.Latitude;
 			longitude = userLocation.Longitude;
-
-			latitudeView.Text = "Latitude: " + latitude;
-			longitudeView.Text = "Longitude: " + longitude;
 		}
+
+
 
 		// Lifecycle methods
 		protected override void OnResume()
@@ -94,10 +91,12 @@ namespace beer_me
 			}
 			else
 			{
-				Console.WriteLine("Provider not enabled");
+
 				Log.Info((string)locMgr, provider + " is not available. Does the device have location services enabled?");
 			}
 		}
+
+
 
 		protected override void OnPause()
 		{
@@ -119,8 +118,7 @@ namespace beer_me
 
 		public void OnStatusChanged(string provider, Availability status, Bundle extras)
 		{
-			Console.WriteLine("Status Changed");
-			statusView.Text = "Status: " + status;
+			Console.WriteLine("Status changed");
 		}
 
 		public void OnLocationChanged(Android.Locations.Location location)

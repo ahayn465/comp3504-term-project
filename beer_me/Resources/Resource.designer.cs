@@ -1720,8 +1720,8 @@ namespace beer_me
 			// aapt resource value: 0x7f0b001d
 			public const int always = 2131427357;
 			
-			// aapt resource value: 0x7f0b0059
-			public const int asbaLogo = 2131427417;
+			// aapt resource value: 0x7f0b0058
+			public const int asbaLogo = 2131427416;
 			
 			// aapt resource value: 0x7f0b001a
 			public const int beginning = 2131427354;
@@ -1735,11 +1735,11 @@ namespace beer_me
 			// aapt resource value: 0x7f0b0069
 			public const int breweryImage = 2131427433;
 			
-			// aapt resource value: 0x7f0b005b
-			public const int breweryListButton = 2131427419;
+			// aapt resource value: 0x7f0b005a
+			public const int breweryListButton = 2131427418;
 			
-			// aapt resource value: 0x7f0b0058
-			public const int breweryListView = 2131427416;
+			// aapt resource value: 0x7f0b0057
+			public const int breweryListView = 2131427415;
 			
 			// aapt resource value: 0x7f0b002e
 			public const int buttonPanel = 2131427374;
@@ -1758,6 +1758,9 @@ namespace beer_me
 			
 			// aapt resource value: 0x7f0b0034
 			public const int contentPanel = 2131427380;
+			
+			// aapt resource value: 0x7f0b005b
+			public const int coordinates = 2131427419;
 			
 			// aapt resource value: 0x7f0b003a
 			public const int custom = 2131427386;
@@ -1789,8 +1792,8 @@ namespace beer_me
 			// aapt resource value: 0x7f0b003b
 			public const int expanded_menu = 2131427387;
 			
-			// aapt resource value: 0x7f0b005a
-			public const int findBrewButton = 2131427418;
+			// aapt resource value: 0x7f0b0059
+			public const int findBrewButton = 2131427417;
 			
 			// aapt resource value: 0x7f0b0004
 			public const int home = 2131427332;
@@ -1810,9 +1813,6 @@ namespace beer_me
 			// aapt resource value: 0x7f0b0067
 			public const int info = 2131427431;
 			
-			// aapt resource value: 0x7f0b0056
-			public const int latitude = 2131427414;
-			
 			// aapt resource value: 0x7f0b0061
 			public const int line1 = 2131427425;
 			
@@ -1828,8 +1828,8 @@ namespace beer_me
 			// aapt resource value: 0x7f0b0054
 			public const int locateBreweries = 2131427412;
 			
-			// aapt resource value: 0x7f0b0057
-			public const int longitude = 2131427415;
+			// aapt resource value: 0x7f0b0056
+			public const int longitude = 2131427414;
 			
 			// aapt resource value: 0x7f0b006a
 			public const int mapView = 2131427434;

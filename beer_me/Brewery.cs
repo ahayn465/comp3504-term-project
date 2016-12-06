@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Json;
 using SQLite;
 
 namespace beer_me
 {
 	public class Brewery
 	{
-		private string ID;
+		
+		private String ID;
 		private String Name;
 		private String Description;
 		private String Address;
@@ -14,18 +16,26 @@ namespace beer_me
 		private String Image;
 		private String Lat;
 		private String Long;
+		//private String Instagram = "";
+		//private String Facebook = "";
+		//private String Twitter = "";
+		private String PlaceId;
 
-		public Brewery(string id, string name, string description, string address, string city, string phone, string image, string latd, string longd)
+		public Brewery( JsonValue newBrewery )
 		{
-			this.ID = id;
-			this.Name = name;
-			this.Description = description;
-			this.Address = address;
-			this.City = city;
-			this.Phone = phone;
-			this.Image = image;
-			this.Lat = latd;
-			this.Long = longd;
+			this.ID = newBrewery["_id"];
+			this.Name = newBrewery["name"];
+			this.Description = newBrewery["description"];
+			this.Address = newBrewery["address"];
+			this.City = newBrewery["city"];
+			this.Phone = newBrewery["phone"];
+			this.Image = newBrewery["image"];
+			this.Lat = newBrewery["latd"];
+			this.Long = newBrewery["longd"];
+
+			if (newBrewery["placeId"].Count > 0)
+				this.PlaceId = newBrewery["placeId"][0];
+
 		}
 
 		public override string ToString()

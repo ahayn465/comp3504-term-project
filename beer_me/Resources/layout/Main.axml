@@ -5,8 +5,8 @@
     android:layout_height="match_parent">
     <ImageView
         android:src="@drawable/asba_logo"
-        android:layout_width="350dp"
-        android:layout_height="350dp"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="30dp"
         android:layout_marginTop="30dp"
@@ -21,4 +21,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/breweryListButton" />
+    <TextView
+        android:text="Hey! Welcome to Local Brew."
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:id="@+id/status" />
+    <TextView
+        android:text="Latitude"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/coordinates" />
 </LinearLayout>

@@ -88,15 +88,7 @@ namespace beer_me
 			if (breweryData != null)
 			{
 
-				var newBrewery = new Brewery(breweryData["_id"],
-											 breweryData["name"],
-											 breweryData["description"],
-											 breweryData["address"],
-											 breweryData["city"],
-											 breweryData["phone"], 
-			                            	 breweryData["image"],
-				                             breweryData["latd"],
-				                             breweryData["longd"]);
+				var newBrewery = new Brewery( breweryData );
 
 				populateBrewery(newBrewery);
 

@@ -16,7 +16,6 @@ namespace beer_me
 		JsonValue rawBreweryData;
 
 		List<Brewery> breweries = new List<Brewery>();
-		string pathToDatabase;
 
 		// Views
 		ListView breweryListView;
@@ -35,6 +34,7 @@ namespace beer_me
 
 			breweryListView = FindViewById<ListView>(Resource.Id.breweryListView);
 
+			breweries = breweryDataService.getBreweryList();
 
 			Task<String> breweriesReady = GetBreweryDataAsync();
 		}
@@ -64,31 +64,29 @@ namespace beer_me
 				{
 					JsonValue brewery = (JsonValue)b;
 
-					var newBrewery = new Brewery(brewery["_id"],
-												 brewery["name"],
-												 brewery["description"],
-												 brewery["address"],
-												 brewery["city"],
-												 brewery["phone"],
-												 brewery["image"],
-												 brewery["latd"],
-											 	 brewery["longd"]);
+					var newBrewery = new Brewery( brewery );
 
 					breweries.Add(newBrewery);
 				}
 
 				breweryDataService.setBreweryList(breweries);
+
+				makeTheList(breweries);
 			}
 			else {
 				Console.WriteLine("No Data");
 			}
+
+		}
+
+		private void makeTheList(List<Brewery> breweries)
+		{
 
 			// TODO move this to its own method
 			breweryListViewAdapter = new BreweryListAdapter(this, breweries);
 			breweryListView.Adapter = breweryListViewAdapter;
 			breweryListView.FastScrollEnabled = true;
 			breweryListView.ItemClick += breweryListView_ItemClick;
-
 		}
 
 
