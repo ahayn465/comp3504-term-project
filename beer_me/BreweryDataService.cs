@@ -11,9 +11,21 @@ namespace beer_me
 	public class BreweryDataService
 	{
 		List<Brewery> breweryList = new List<Brewery>();
+		string destinations = "";
+		private string googleMatrixApiString; 
 
 		public BreweryDataService()
 		{
+			Console.WriteLine("Brewery service initialized");
+
+		}
+
+		private string setGoogleApiString( string gps, string destinations )
+		{
+			googleMatrixApiString = "https://maps.googleapis.com/maps/api/distancematrix/json?units=metric&origins="
+				+ gps + "&destinations=place_id:" + destinations + "&key=AIzaSyCUi84JbqtkkTcMsbzOwus0aujOR3CwA5c";
+			Console.WriteLine(googleMatrixApiString);
+			return googleMatrixApiString;
 		}
 
 		public List<Brewery> getBreweryList()
@@ -26,7 +38,7 @@ namespace beer_me
 		{
 			this.breweryList = theList;
 			Console.WriteLine("Cheers!! ------------ Breweries set!");
-			Console.WriteLine(this.breweryList);
+
 		}
 
 		public IEnumerable<TableBrewery> queryBreweries(string path, string id)
@@ -62,48 +74,109 @@ namespace beer_me
 		}
 
 
+		// Internal async helper methods
+		internal async Task<string> getBreweryDataAsync(string requestUrl)
+		{
+			try
+			{
+				string urlToFetch = requestUrl;
+				JsonValue rawBreweryData = await FetchDataAsync(urlToFetch);
+				string answer = generateBreweryList(rawBreweryData);
+				return answer;
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+			}
+
+			return "ERROR";
+		}
+
+		internal async Task<string> getBeweryMatrixDataAsync(string gps, string destinations)
+		{
+			try
+			{
+				string urlToFetch = setGoogleApiString(gps, destinations);
+				Console.WriteLine(urlToFetch);
+				JsonValue rawMatrixData = await FetchDataAsync(urlToFetch);
+
+				Console.WriteLine(rawMatrixData.ToString());
+				return "ok";
+			}
+			catch (Exception e)
+			{
+				Console.WriteLine(e);
+			}
+
+			return "ERROR";
+		}
+
+
+		// Data related methods
+		private string generateBreweryList(JsonValue breweryData)
+		{
+			if (breweryData != null)
+			{
+				foreach (var b in breweryData)
+				{
+					JsonValue brewery = (JsonValue)b;
+
+					var newBrewery = new Brewery(brewery);
+
+					breweryList.Add(newBrewery);
+				}
+
+				return "ok";
+			}
+			else {
+				Console.WriteLine("No Data");
+			}
+
+			return "ERROR";
+		}
+
 		// SQLite
 
-		public string createDatabase(string path)
-		{
-			try
-			{
-				var connection = new SQLiteAsyncConnection(path);
-				connection.CreateTableAsync<TableBrewery>().ContinueWith(t =>
-				{
-					//do something here?
-				});
+		//public string createDatabase(string path)
+		//{
+		//	try
+		//	{
+		//		var connection = new SQLiteAsyncConnection(path);
+		//		connection.CreateTableAsync<TableBrewery>().ContinueWith(t =>
+		//		{
+		//			//do something here?
+		//		});
 
-				return "TABLES_CREATED";
+		//		return "TABLES_CREATED";
 
-			}
-			catch (SQLiteException ex)
-			{
-				return ex.Message;
-			}
-		}
+		//	}
+		//	catch (SQLiteException ex)
+		//	{
+		//		return ex.Message;
+		//	}
+		//}
 
-		public string insertUpdateData(TableBrewery data, string path)
-		{
-			try
-			{
+		//public string insertUpdateData(TableBrewery data, string path)
+		//{
+		//	try
+		//	{
 
-				var db = new SQLiteAsyncConnection(path);
-				var r = db.QueryAsync<TableBrewery>("select * from TableBrewery where breweryId = ?", data.ID);
+		//		var db = new SQLiteAsyncConnection(path);
+		//		var r = db.QueryAsync<TableBrewery>("select * from TableBrewery where breweryId = ?", data.ID);
 
-				Console.Write(r);
-				var res = db.InsertAsync(data);
-				Console.WriteLine("Insert", res);
-				return "Data added/updated";
+		//		Console.Write(r);
+		//		var res = db.InsertAsync(data);
+		//		Console.WriteLine("Insert", res);
+		//		return "Data added/updated";
 
 
 
-			}
-			catch (SQLiteException ex)
-			{
-				return ex.Message;
-			}
-		}
+		//	}
+		//	catch (SQLiteException ex)
+		//	{
+		//		return ex.Message;
+		//	}
+		//}
 
 
 

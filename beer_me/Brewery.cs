@@ -73,9 +73,17 @@ namespace beer_me
 			return this.Image;	
 		}
 
-		public string toString()
+		public string getPlaceId()
 		{
-			return this.getName() + " " + this.getDescription();
+			if (this.PlaceId != "")
+				return this.PlaceId;
+			else return null;
 		}
+
+		public string getCity()
+		{
+			return City;
+		}
+
 	}
 }

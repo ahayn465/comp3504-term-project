@@ -87,13 +87,10 @@ namespace beer_me
 			
 			if (breweryData != null)
 			{
-
 				var newBrewery = new Brewery( breweryData );
 
 				populateBrewery(newBrewery);
 
-				//this.breweryName.Text = newBrewery.getName();
-				//this.breweryDescription.Text = newBrewery.getDescription();
 				this.brewery = newBrewery;
 
 			}

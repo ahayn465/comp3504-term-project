@@ -7,6 +7,9 @@ using Android.Locations;
 
 using Android.Util;
 using System.Diagnostics.Contracts;
+using System.Collections.Generic;
+using System.Json;
+using System.Threading.Tasks;
 
 namespace beer_me
 {
@@ -22,21 +25,30 @@ namespace beer_me
 		Button breweryListButton;
 
 		LocationManager locMgr;
+		BreweryDataService breweryDataService;
 		double latitude;
 		double longitude;
 		string provider;
+		string userCoordinates;
+		string asbaApiUrl;
+		string googleMatrixApiDestinations;
+
+
+
+		List<Brewery> breweries = new List<Brewery>();
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.Main);
 
-			bool viewsReady = generateViews();
+			// async call to the API to fetch brewery data and 
+			// generate a loist of breweries
+			breweryDataService = new BreweryDataService();
+			setUpData();
 
-			if (viewsReady)
-			{
-				connectListeners();
-			}
+			bool viewsReady = generateViews();
+			if (viewsReady) connectListeners();
 
 			locMgr = GetSystemService(Context.LocationService) as LocationManager;
 			provider = LocationManager.GpsProvider;
@@ -47,6 +59,29 @@ namespace beer_me
 				updateUserLocation(lastKnown);
 			}
 
+		}
+
+		private async void setUpData()
+		{
+			asbaApiUrl = "http://blowfish.asba.development.c66.me/api/breweries";
+			var result = await breweryDataService.getBreweryDataAsync(asbaApiUrl);
+
+			if (result != "ERROR")
+			{
+				breweries = breweryDataService.getBreweryList();
+				if (breweries != null)
+				{
+					foreach (var brewery in breweries)
+					{
+						if(brewery.getCity() == "Calgary" )
+						if(brewery.getPlaceId() != null)
+						googleMatrixApiDestinations +=  brewery.getPlaceId() + "|place_id:";
+						
+					}
+					googleMatrixApiDestinations = googleMatrixApiDestinations.Remove(googleMatrixApiDestinations.Length - 10);
+					var result2 = await breweryDataService.getBeweryMatrixDataAsync(  userCoordinates, googleMatrixApiDestinations );
+				}
+			}
 		}
 
 		private bool generateViews()
@@ -73,7 +108,7 @@ namespace beer_me
 		private void connectListeners()
 		{
 			findBrewButton.Click += delegate {
-				statusView.Text = "Finding your local brew";	
+				statusView.Text = "Cheers \U0001F37A we're finding your local brew";	
 			};
 
 			breweryListButton.Click += delegate {
@@ -87,7 +122,8 @@ namespace beer_me
 			latitude = userLocation.Latitude;
 			longitude = userLocation.Longitude;
 
-			coordinates.Text = latitude + "," + longitude;
+			userCoordinates = latitude + "," + longitude;
+			coordinates.Text = userCoordinates;
 		}
 
 
