@@ -18,11 +18,10 @@ namespace beer_me
 	{
 		Context context;
 
-		TextView coordinates;
-		TextView statusView;
 		Button locateBreweries;
 		Button findBrewButton;
 		Button breweryListButton;
+		TextView statusView;
 
 		LocationManager locMgr;
 		BreweryDataService breweryDataService;
@@ -34,18 +33,13 @@ namespace beer_me
 		string googleMatrixApiDestinations;
 
 
-
+		List<Brewery> breweriesToVisit = new List<Brewery>();
 		List<Brewery> breweries = new List<Brewery>();
 
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
 			SetContentView(Resource.Layout.Main);
-
-			// async call to the API to fetch brewery data and 
-			// generate a loist of breweries
-			breweryDataService = new BreweryDataService();
-			setUpData();
 
 			bool viewsReady = generateViews();
 			if (viewsReady) connectListeners();
@@ -61,40 +55,15 @@ namespace beer_me
 
 		}
 
-		private async void setUpData()
-		{
-			asbaApiUrl = "http://blowfish.asba.development.c66.me/api/breweries";
-			var result = await breweryDataService.getBreweryDataAsync(asbaApiUrl);
-
-			if (result != "ERROR")
-			{
-				breweries = breweryDataService.getBreweryList();
-				if (breweries != null)
-				{
-					foreach (var brewery in breweries)
-					{
-						if(brewery.getCity() == "Calgary" )
-						if(brewery.getPlaceId() != null)
-						googleMatrixApiDestinations +=  brewery.getPlaceId() + "|place_id:";
-						
-					}
-					googleMatrixApiDestinations = googleMatrixApiDestinations.Remove(googleMatrixApiDestinations.Length - 10);
-					var result2 = await breweryDataService.getBeweryMatrixDataAsync(  userCoordinates, googleMatrixApiDestinations );
-				}
-			}
-		}
-
 		private bool generateViews()
 		{
 			try
 			{
 				findBrewButton = FindViewById<Button>(Resource.Id.findBrewButton);
 				breweryListButton = FindViewById<Button>(Resource.Id.breweryListButton);
-				coordinates = FindViewById<TextView>(Resource.Id.coordinates);
 				statusView = FindViewById <TextView> (Resource.Id.status);
 
 				statusView.Text = "Hey! Welcome to Local Brew \U0001F37A";
-				// \U0001F37A is cheers
 
 				return true;
 			}
@@ -109,6 +78,9 @@ namespace beer_me
 		{
 			findBrewButton.Click += delegate {
 				statusView.Text = "Cheers \U0001F37A we're finding your local brew";	
+				Intent goToBreweryList = new Intent(this, typeof(ClosestBreweriesList));
+				goToBreweryList.PutExtra("coords", userCoordinates);
+				StartActivity(goToBreweryList);
 			};
 
 			breweryListButton.Click += delegate {
@@ -123,7 +95,6 @@ namespace beer_me
 			longitude = userLocation.Longitude;
 
 			userCoordinates = latitude + "," + longitude;
-			coordinates.Text = userCoordinates;
 		}
 
 
@@ -168,7 +139,6 @@ namespace beer_me
 		public void OnStatusChanged(string provider, Availability status, Bundle extras)
 		{
 			Console.WriteLine("Status Changed");
-			statusView.Text = "Status: " + status;
 		}
 
 		public void OnLocationChanged(Android.Locations.Location location)

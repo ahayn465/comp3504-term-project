@@ -1720,8 +1720,8 @@ namespace beer_me
 			// aapt resource value: 0x7f0b001d
 			public const int always = 2131427357;
 			
-			// aapt resource value: 0x7f0b0058
-			public const int asbaLogo = 2131427416;
+			// aapt resource value: 0x7f0b0059
+			public const int asbaLogo = 2131427417;
 			
 			// aapt resource value: 0x7f0b001a
 			public const int beginning = 2131427354;
@@ -1735,8 +1735,8 @@ namespace beer_me
 			// aapt resource value: 0x7f0b0069
 			public const int breweryImage = 2131427433;
 			
-			// aapt resource value: 0x7f0b005a
-			public const int breweryListButton = 2131427418;
+			// aapt resource value: 0x7f0b005b
+			public const int breweryListButton = 2131427419;
 			
 			// aapt resource value: 0x7f0b0057
 			public const int breweryListView = 2131427415;
@@ -1753,14 +1753,14 @@ namespace beer_me
 			// aapt resource value: 0x7f0b0063
 			public const int chronometer = 2131427427;
 			
+			// aapt resource value: 0x7f0b0058
+			public const int closestBreweriesListView = 2131427416;
+			
 			// aapt resource value: 0x7f0b001e
 			public const int collapseActionView = 2131427358;
 			
 			// aapt resource value: 0x7f0b0034
 			public const int contentPanel = 2131427380;
-			
-			// aapt resource value: 0x7f0b005b
-			public const int coordinates = 2131427419;
 			
 			// aapt resource value: 0x7f0b003a
 			public const int custom = 2131427386;
@@ -1792,8 +1792,8 @@ namespace beer_me
 			// aapt resource value: 0x7f0b003b
 			public const int expanded_menu = 2131427387;
 			
-			// aapt resource value: 0x7f0b0059
-			public const int findBrewButton = 2131427417;
+			// aapt resource value: 0x7f0b005a
+			public const int findBrewButton = 2131427418;
 			
 			// aapt resource value: 0x7f0b0004
 			public const int home = 2131427332;
@@ -2113,46 +2113,49 @@ namespace beer_me
 			public const int BreweryList = 2130968603;
 			
 			// aapt resource value: 0x7f04001c
-			public const int Main = 2130968604;
+			public const int ClosestBreweriesList = 2130968604;
 			
 			// aapt resource value: 0x7f04001d
-			public const int notification_media_action = 2130968605;
+			public const int Main = 2130968605;
 			
 			// aapt resource value: 0x7f04001e
-			public const int notification_media_cancel_action = 2130968606;
+			public const int notification_media_action = 2130968606;
 			
 			// aapt resource value: 0x7f04001f
-			public const int notification_template_big_media = 2130968607;
+			public const int notification_media_cancel_action = 2130968607;
 			
 			// aapt resource value: 0x7f040020
-			public const int notification_template_big_media_narrow = 2130968608;
+			public const int notification_template_big_media = 2130968608;
 			
 			// aapt resource value: 0x7f040021
-			public const int notification_template_lines = 2130968609;
+			public const int notification_template_big_media_narrow = 2130968609;
 			
 			// aapt resource value: 0x7f040022
-			public const int notification_template_media = 2130968610;
+			public const int notification_template_lines = 2130968610;
 			
 			// aapt resource value: 0x7f040023
-			public const int notification_template_part_chronometer = 2130968611;
+			public const int notification_template_media = 2130968611;
 			
 			// aapt resource value: 0x7f040024
-			public const int notification_template_part_time = 2130968612;
+			public const int notification_template_part_chronometer = 2130968612;
 			
 			// aapt resource value: 0x7f040025
-			public const int select_dialog_item_material = 2130968613;
+			public const int notification_template_part_time = 2130968613;
 			
 			// aapt resource value: 0x7f040026
-			public const int select_dialog_multichoice_material = 2130968614;
+			public const int select_dialog_item_material = 2130968614;
 			
 			// aapt resource value: 0x7f040027
-			public const int select_dialog_singlechoice_material = 2130968615;
+			public const int select_dialog_multichoice_material = 2130968615;
 			
 			// aapt resource value: 0x7f040028
-			public const int SingleBrewery = 2130968616;
+			public const int select_dialog_singlechoice_material = 2130968616;
 			
 			// aapt resource value: 0x7f040029
-			public const int support_simple_spinner_dropdown_item = 2130968617;
+			public const int SingleBrewery = 2130968617;
+			
+			// aapt resource value: 0x7f04002a
+			public const int support_simple_spinner_dropdown_item = 2130968618;
 			
 			static Layout()
 			{

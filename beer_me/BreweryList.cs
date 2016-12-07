@@ -83,6 +83,7 @@ namespace beer_me
 		{
 
 			// TODO move this to its own method
+			breweries.Sort();
 			breweryListViewAdapter = new BreweryListAdapter(this, breweries);
 			breweryListView.Adapter = breweryListViewAdapter;
 			breweryListView.FastScrollEnabled = true;

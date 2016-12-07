@@ -11,8 +11,9 @@ namespace beer_me
 	public class BreweryDataService
 	{
 		List<Brewery> breweryList = new List<Brewery>();
-		string destinations = "";
-		private string googleMatrixApiString; 
+		List<Brewery> closestBreweries = new List<Brewery>();
+		private string googleMatrixApiString;
+		JsonValue rawMatrixData;
 
 		public BreweryDataService()
 		{
@@ -32,6 +33,12 @@ namespace beer_me
 		{
 			Console.WriteLine("Getting brewery list");
 			return this.breweryList;
+		}
+
+		public List<Brewery> getBreweriesToVisit()
+		{
+			Console.WriteLine("Getting closest brewery list");
+			return this.closestBreweries;
 		}
 
 		public void setBreweryList(List<Brewery> theList)
@@ -98,9 +105,10 @@ namespace beer_me
 			{
 				string urlToFetch = setGoogleApiString(gps, destinations);
 				Console.WriteLine(urlToFetch);
-				JsonValue rawMatrixData = await FetchDataAsync(urlToFetch);
+				rawMatrixData = await FetchDataAsync(urlToFetch);
 
 				Console.WriteLine(rawMatrixData.ToString());
+
 				return "ok";
 			}
 			catch (Exception e)
@@ -111,8 +119,51 @@ namespace beer_me
 			return "ERROR";
 		}
 
-
 		// Data related methods
+
+
+		public List<Brewery> getListWithMatrixData( List<Brewery> breweriesToVisit )
+		{
+			Console.WriteLine("In Matrix Data");
+			try
+			{
+				if (rawMatrixData != null && breweriesToVisit != null)
+				{
+
+					foreach (var b in breweriesToVisit)
+						Console.WriteLine(b.ToString());
+					Console.WriteLine(rawMatrixData.ToString()); 
+
+
+					Console.WriteLine("MATRIX data");
+					for (var i = 0; i < breweriesToVisit.Count; i++)
+					{
+						Console.WriteLine(breweriesToVisit[i].getPlaceId());
+
+						breweriesToVisit[i].setPlaceIdAddress(rawMatrixData["destination_addresses"][i].ToString());
+						breweriesToVisit[i].setDistance(rawMatrixData["rows"][0]["elements"][i]["distance"]["text"].ToString());
+						breweriesToVisit[i].setTravelTime(rawMatrixData["rows"][0]["elements"][i]["duration"]["text"].ToString());
+						breweriesToVisit[i].setTravelTimeRaw(rawMatrixData["rows"][0]["elements"][i]["duration"]["value"].ToString());
+
+					}
+
+					closestBreweries = breweriesToVisit;
+
+					return breweriesToVisit;
+				}
+				else {
+					Console.WriteLine("No Matrix Data");
+				}
+
+			}
+			catch
+			{
+				Console.WriteLine("Something went wrong");
+			}
+			return null;
+		}
+
+
 		private string generateBreweryList(JsonValue breweryData)
 		{
 			if (breweryData != null)

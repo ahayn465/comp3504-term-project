@@ -4,7 +4,7 @@ using SQLite;
 
 namespace beer_me
 {
-	public class Brewery
+	public class Brewery : IComparable<Brewery>
 	{
 		
 		private String ID;
@@ -20,6 +20,10 @@ namespace beer_me
 		//private String Facebook = "";
 		//private String Twitter = "";
 		private String PlaceId;
+		private String PlaceIdAddress;
+		private string Distance = "";
+		private string TravelTime = "";
+		private string TravelTimeRaw = "";
 
 		public Brewery( JsonValue newBrewery )
 		{
@@ -35,6 +39,10 @@ namespace beer_me
 
 			if (newBrewery["placeId"].Count > 0)
 				this.PlaceId = newBrewery["placeId"][0];
+
+			//if (newBrewery["placeIdAddress"] && newBrewery["placeIdAddress"].Count > 0)
+			//	this.PlaceId = newBrewery["placeIdAddress"][0];
+			
 
 		}
 
@@ -80,9 +88,64 @@ namespace beer_me
 			else return null;
 		}
 
+		public string getPlaceIdAddress()
+		{
+			if (this.PlaceIdAddress != "")
+				return this.PlaceIdAddress;
+			else return null;
+		}
+
+		public string getDistance()
+		{
+			return this.Distance;
+		}
+
+		public string getTravelTime()
+		{
+			return this.TravelTime;
+		}
+
+		public int getTravelTimeRaw()
+		{
+			return Int32.Parse(TravelTimeRaw);
+		}
+
+
 		public string getCity()
 		{
 			return City;
+		}
+
+		public void setTravelTime(string time)
+		{
+			Console.WriteLine(time);
+			this.TravelTime = time;
+		}
+
+		public void setTravelTimeRaw(string time)
+		{
+			Console.WriteLine(time);
+			this.TravelTimeRaw = time;
+		}
+
+
+		public void setDistance(string distance)
+		{
+			Console.WriteLine(distance);
+			this.Distance = distance;
+		}
+
+		public void setPlaceIdAddress(string address)
+		{
+			Console.WriteLine(address);;
+			this.PlaceIdAddress = address;
+		}
+
+		// IComparable interface
+
+		public int CompareTo(Brewery other)
+		{
+			return Name.CompareTo(other.Name);
 		}
 
 	}

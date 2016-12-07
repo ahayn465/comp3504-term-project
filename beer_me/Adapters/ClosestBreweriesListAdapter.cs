@@ -7,13 +7,13 @@ using Android.Widget;
 
 namespace beer_me
 {
-	public class BreweryListAdapter:BaseAdapter<Brewery>
+	public class ClosestBreweriesListAdapter:BaseAdapter<Brewery>
 	{
 
 		List<Brewery> breweries; 
 		Activity context;
 
-		public BreweryListAdapter( Activity context, List<Brewery> breweries) :base()
+		public ClosestBreweriesListAdapter( Activity context, List<Brewery> breweries) :base()
 		{
 			this.breweries = breweries;
 			this.context = context;
@@ -53,9 +53,8 @@ namespace beer_me
 			{
 				convertView = context.LayoutInflater.Inflate(Android.Resource.Layout.SimpleListItem1, null);
 			}
-			convertView.FindViewById<TextView>(Android.Resource.Id.Text1).Text = brewery.ToString();
+			convertView.FindViewById<TextView>(Android.Resource.Id.Text1).Text = brewery.getName() + " " +  brewery.getTravelTime();
 			return convertView;
 		}
-
 	}
 }
