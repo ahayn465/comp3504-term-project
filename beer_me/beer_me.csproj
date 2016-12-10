@@ -149,6 +149,7 @@
     <AndroidResource Include="Resources\drawable\logo_bent_stick.jpg" />
     <AndroidResource Include="Resources\drawable\asba_logo.png" />
     <AndroidResource Include="Resources\layout\ClosestBreweriesList.axml" />
+    <AndroidResource Include="Resources\layout\ClosestBreweryItem.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

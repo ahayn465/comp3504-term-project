@@ -51,9 +51,20 @@ namespace beer_me
 
 			if (convertView == null)
 			{
-				convertView = context.LayoutInflater.Inflate(Android.Resource.Layout.SimpleListItem1, null);
+				convertView = context.LayoutInflater.Inflate(Android.Resource.Layout.ActivityListItem, null);
 			}
-			convertView.FindViewById<TextView>(Android.Resource.Id.Text1).Text = brewery.getName() + " " +  brewery.getTravelTime();
+
+			var resourceId = (int)typeof(Resource.Drawable).GetField(brewery.getImage()).GetValue(null);
+
+			convertView.FindViewById<TextView>(Android.Resource.Id.Text1).Text = brewery.getName() + " - Only " +  brewery.getTravelTime().Replace("\"", "") + " away!";
+			convertView.FindViewById<ImageView>(Android.Resource.Id.Icon).SetImageResource(resourceId);
+
+			ImageView image = convertView.FindViewById<ImageView>(Android.Resource.Id.Icon);
+
+			convertView.SetPadding(100, 100, 100, 100);
+			image.SetMinimumWidth(100);
+			image.SetMinimumHeight(100);
+
 			return convertView;
 		}
 	}
